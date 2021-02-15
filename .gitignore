@@ -11,3 +11,4 @@ gradlew
 gradlew.bat
 local.properties
 settings.gradle
+solution-result.json

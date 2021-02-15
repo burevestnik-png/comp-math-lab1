@@ -1,0 +1,1 @@
+del solution-result.json

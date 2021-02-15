@@ -11,8 +11,17 @@ data class EquationSystem(
     @SerializedName("right-factors")
     val rightFactors: Array<Double>,
     @Expose(deserialize = false)
-    val result: EquationSystemSolution? = null
+    var result: EquationSystemSolution? = null
 ) {
+    fun print() {
+        println("Solving:")
+        factors.forEachIndexed {
+            index: Int, line: Array<Double> -> println("${line.contentToString()} = ${rightFactors[index]}")
+        }
+        println()
+    }
+
+
     fun copy(
         matrixSize: Int = this.matrixSize,
         accuracy: Double = this.accuracy,

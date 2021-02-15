@@ -1,15 +1,15 @@
 import domain.EquationSystem
 import io.DataReader
+import io.DataWriter
 import io.Printer
 import services.ComputationService
-import services.MatrixTransformer
-import java.lang.Exception
-import java.lang.NumberFormatException
+import java.io.FileNotFoundException
 
 class Controller(private val appMode: AppMode) {
     private val dataReader = DataReader()
     private val printer = Printer()
     private val computationService = ComputationService()
+    private val dataWriter = DataWriter()
 
     fun handle(args: Array<String>) {
         val equationSystem: EquationSystem? = try {
@@ -20,18 +20,26 @@ class Controller(private val appMode: AppMode) {
                     printer.printExampleFormatError(args[1])
                     null
                 }
+                is FileNotFoundException -> {
+                    printer.printFileNotFound(args[1])
+                    null
+                }
                 else -> {
-                    TODO()
+                    printer.printUnexpectedErrorEmerged(e.message)
+                    null
                 }
             }
         }
 
-        println(equationSystem)
-        if (equationSystem == null) {
-            // TODO
+        val solution = equationSystem?.let {
+            equationSystem.print()
+            computationService.solveSystem(it)
+        } ?: run {
+            printer.printTroublesWithReadingInput()
             return
         }
-        computationService.solveSystem(equationSystem)
-        println(equationSystem)
+        printer.printGaussSolution(solution).also { equationSystem.result = solution }
+
+        dataWriter.writeData(equationSystem)
     }
 }

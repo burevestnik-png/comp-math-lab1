@@ -5,8 +5,17 @@ enum class Status {
     SUCCESS
 }
 
-data class EquationSystemSolution(val status: Status = Status.FAIL, val result: Array<Double?>) {
-    constructor(status: Status = Status.FAIL, matrixSize: Int) : this(status, arrayOfNulls<Double>(matrixSize))
+data class EquationSystemSolution(
+    val status: Status = Status.FAIL,
+    val result: Array<Double>,
+    val faults: Array<Double>,
+    val iterationCounts: Int,
+) {
+    constructor(status: Status = Status.FAIL) : this(status,
+        emptyArray(),
+        emptyArray(),
+        0
+    )
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

@@ -27,7 +27,6 @@ class DiagonalDominanceHandler {
             for (i in equationSystem.factors.indices) {
                 for (j in equationSystem.factors.indices) {
                     if (i != j && maxFactorIndices[i] == maxFactorIndices[j]) {
-                        // TODO
                         throw Exception("Diagonal dominance is unreachable")
                     }
                 }
