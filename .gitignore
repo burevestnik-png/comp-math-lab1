@@ -4,6 +4,7 @@
 /.idea/
 /src/test/
 /build/
+/gradle/
 
 local.properties
 solution-result.json
