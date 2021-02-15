@@ -6,9 +6,5 @@
 /src/test/
 /build/
 
-gradle.properties
-gradlew
-gradlew.bat
 local.properties
-settings.gradle
 solution-result.json
