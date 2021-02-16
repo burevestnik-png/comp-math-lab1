@@ -1,6 +1,6 @@
 {
   "matrix-size": 4,
-  "accuracy": 0.01,
+  "accuracy": 0.000001,
   "factors": [
     [2, 2, 10, 2],
     [10, 1, 1, 34],

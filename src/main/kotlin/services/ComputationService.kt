@@ -17,6 +17,7 @@ class ComputationService {
                 return EquationSystemSolution()
             }
             printer.printDiagonalUnbalanceRepaired()
+            equationSystem.print()
         }
 
         val transformedEquationSystem = MatrixTransformer.transform(equationSystem)
