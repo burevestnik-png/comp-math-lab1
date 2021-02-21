@@ -37,11 +37,15 @@ class GaussSolver {
                 printer.printGaussIteration(newSolutionVector, iterationCounter)
             } while (!isAccuracyAchieved(newSolutionVector, oldSolutionVector, equationSystem.accuracy))
 
-            return EquationSystemSolution(Status.SUCCESS, newSolutionVector, generateFaults(newSolutionVector, oldSolutionVector), iterationCounter )
+            return EquationSystemSolution(Status.SUCCESS,
+                newSolutionVector,
+                generateFaults(newSolutionVector, oldSolutionVector),
+                iterationCounter)
         }
 
         private fun generateFaults(newSolutionVector: Array<Double>, oldSolutionVector: Array<Double>): Array<Double> {
-            return newSolutionVector.zip(oldSolutionVector) {new: Double, old: Double -> abs(new - old) }.toTypedArray()
+            return newSolutionVector.zip(oldSolutionVector) { new: Double, old: Double -> abs(new - old) }
+                .toTypedArray()
         }
 
         private fun updateSolutionVector(index: Int, equationSystem: EquationSystem, solutionVector: Array<Double>) {

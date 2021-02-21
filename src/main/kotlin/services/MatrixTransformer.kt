@@ -5,7 +5,8 @@ import domain.EquationSystem
 class MatrixTransformer {
     companion object {
         fun transform(equationSystem: EquationSystem): EquationSystem {
-            return equationSystem.copy(rightFactors = transformRightFactors(equationSystem), factors = transformMainFactors(equationSystem))
+            return equationSystem.copy(rightFactors = transformRightFactors(equationSystem),
+                factors = transformMainFactors(equationSystem))
         }
 
         private fun transformMainFactors(equationSystem: EquationSystem): Array<Array<Double>> {
@@ -19,7 +20,8 @@ class MatrixTransformer {
         private fun transformRightFactors(equationSystem: EquationSystem): Array<Double> {
             val diagonalElements: List<Double> =
                 equationSystem.factors.mapIndexed { index: Int, line: Array<Double> -> line[index] }
-            val adductedRightFactors = equationSystem.rightFactors.zip(diagonalElements) { a: Double, b: Double -> a / b }
+            val adductedRightFactors =
+                equationSystem.rightFactors.zip(diagonalElements) { a: Double, b: Double -> a / b }
             return adductedRightFactors.toTypedArray()
         }
     }
